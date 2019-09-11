@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import TodoItem from './todo-item';
 
 const mockList = [
  'feed the cat',
@@ -22,11 +23,20 @@ const Todo = () => {
         setNewItemText('');
     }
 
+    const removeItemFromList = (item) => {
+        setList(list.filter( l => l !== item));
+    }
+
     return (
         <div>
             {
                 list.map( l => {
-                    return <div>{l}</div>
+                    return (
+                        <TodoItem 
+                            item={l}
+                            onDelete={removeItemFromList}
+                        />
+                    )
                 })
             }
             <input 
